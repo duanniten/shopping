@@ -61,9 +61,8 @@ def mouth_to_int(mes):
     return meses.get(mes, "Invalid Mouth")
 
 def new_or_return(client:str):
-    if client == "New_Visitor" : return 0
-    elif client == "Returning_Visitor": return 1
-    raise NameError("client not new or returning")
+    if client == "Returning_Visitor" : return 1
+    else : return 0
 
 
 def load_data(filename):
