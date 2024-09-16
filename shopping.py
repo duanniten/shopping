@@ -30,15 +30,15 @@ def main():
     print(f"True Positive Rate: {100 * sensitivity:.2f}%")
     print(f"True Negative Rate: {100 * specificity:.2f}%")
 
-def is_weekend(isWeekend:bool):
-    if isWeekend: return 1
-    elif isWeekend=="False": return 0
-    raise NameError("weekend type values problem")
+def is_weekend(isWeekend:str):
+    if isWeekend == "TRUE": return 1
+    else: return 0
+    
 
-def is_revenue(isRevenue:bool):
-    if isRevenue: return 1
-    elif isRevenue=="False": return 0
-    raise NameError("Revenue type values problem")
+def is_revenue(isRevenue:str):
+    if isRevenue == "TRUE": return 1
+    else: return 0
+    
 
 def mouth_to_int(mes):
     # Mapeamento dos meses para inteiros de 0 a 11
@@ -122,7 +122,7 @@ def load_data(filename):
                     new_or_return(row[15]),
                     is_weekend(row[16])]
             )
-            labels.append( is_revenue(row[17]))
+            labels.append(is_revenue(row[17]))
             
     return (evidence, labels)
 
@@ -157,6 +157,7 @@ def evaluate(labels:list, predictions:list):
             sensitivity += 1
         elif y==0 and y_predic == 0:
             specificity += 1
+
     sensitivity = sensitivity / labels.count(1)
     specificity = specificity / labels.count(0)
 
