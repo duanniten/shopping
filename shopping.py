@@ -58,7 +58,11 @@ def mouth_to_int(mes):
     }
     
     # Retorna o índice do mês ou uma mensagem de erro
-    return meses.get(mes, "Invalid Mouth")
+    mes = meses.get(mes, "Invalid Mouth")
+    if mes == "Invalid Mouth":
+        print(mes)
+        raise NameError("mouth if wrogn data")
+    return mes
 
 def new_or_return(client:str):
     if client == "Returning_Visitor" : return 1
