@@ -120,6 +120,7 @@ def load_data(filename):
                 ],
                 "labels": is_revenue(row[17])
             })
+    return data
 
 def train_model(evidence:list, labels:list):
     """
