@@ -2,7 +2,7 @@ import csv
 import sys
 
 from sklearn.model_selection import train_test_split
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.neighbors import KNeighborsClassifier as KNC
 
 TEST_SIZE = 0.4
 
@@ -122,15 +122,16 @@ def load_data(filename):
                 "labels": is_revenue(row[17])
             })
 
-def train_model(evidence, labels):
+def train_model(evidence:list, labels:list):
     """
     Given a list of evidence lists and a list of labels, return a
     fitted k-nearest neighbor model (k=1) trained on the data.
     """
-    raise NotImplementedError
+    knc = KNC(n_neighbors=1)
+    knc.fit(evidence, labels)
+    return knc
 
-
-def evaluate(labels, predictions):
+def evaluate(labels:list, predictions:list):
     """
     Given a list of actual labels and a list of predicted labels,
     return a tuple (sensitivity, specificity).
@@ -145,7 +146,17 @@ def evaluate(labels, predictions):
     representing the "true negative rate": the proportion of
     actual negative labels that were accurately identified.
     """
-    raise NotImplementedError
+    sensitivity = 0
+    specificity = 0
+    for y, y_predic in zip(labels, predictions):
+        if y==1 and y_predic == 1:
+            sensitivity += 1
+        elif y==0 and y_predic == 0:
+            specificity += 1
+    sensitivity = sensitivity / labels.count(1)
+    specificity = specificity / labels.count(0)
+
+    return (sensitivity, specificity)
 
 
 if __name__ == "__main__":
