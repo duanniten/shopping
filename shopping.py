@@ -96,10 +96,10 @@ def load_data(filename):
     with open(filename) as f:
         reader = csv.reader(f)
         next(reader)
-        data = []
+        evidence = []
+        labels = []
         for row in reader:
-            data.append({
-                "evidence":[
+            evidence.append(
                     int(row[0]),
                     float(row[1]),
                     int(row[2]),
@@ -117,10 +117,10 @@ def load_data(filename):
                     int(row[14]),
                     new_or_return(row[15]),
                     is_weekend(row[16])
-                ],
-                "labels": is_revenue(row[17])
-            })
-    return data
+            )
+            labels.append( is_revenue(row[17]))
+            
+    return (evidence, labels)
 
 def train_model(evidence:list, labels:list):
     """
