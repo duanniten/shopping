@@ -116,7 +116,7 @@ def load_data(filename):
                     int(row[12]),
                     int(row[13]),
                     int(row[14]),
-                    new_or_return[row[15]],
+                    new_or_return(row[15]),
                     is_weekend(row[16])
                 ],
                 "labels": is_revenue(row[17])
