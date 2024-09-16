@@ -99,7 +99,7 @@ def load_data(filename):
         evidence = []
         labels = []
         for row in reader:
-            evidence.append(
+            evidence.append([
                     int(row[0]),
                     float(row[1]),
                     int(row[2]),
@@ -116,7 +116,7 @@ def load_data(filename):
                     int(row[13]),
                     int(row[14]),
                     new_or_return(row[15]),
-                    is_weekend(row[16])
+                    is_weekend(row[16])]
             )
             labels.append( is_revenue(row[17]))
             
